@@ -11,6 +11,8 @@ namespace WebApplication5.Models
         public int CustomerId { get; set; }
         public Customer? Customer { get; set; }
 
+        public List<OrderDetail> OrderDetails { get; set; }
+
         public DateTime BuyDate { get; set; }
     }
 }
