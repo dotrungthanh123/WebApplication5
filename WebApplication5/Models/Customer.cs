@@ -9,7 +9,7 @@ namespace WebApplication5.Models
 
         [ForeignKey("Account")]
         public int AccountId { get; set; }
-        public Account? Account { get; set; }
+        public Account Account { get; set; }
 
         public List<TicketOrder> ticketOrders { get; } = new List<TicketOrder>();
 
