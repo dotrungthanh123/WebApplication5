@@ -2,189 +2,111 @@
     ViewData["Title"] = "Home Page";
 }
 
-<!-- Start Slider -->
-<div id="slides-shop" class="cover-slides">
-    <ul class="slides-container">
-        <li class="text-center">
-            <img src="images/banner-01.jpg" alt="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="m-b-20"><strong>Welcome To <br> Ticky Box</strong></h1>
-                        <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
-                        <p><a class="btn hvr-hover" href="#">Buy Ticket Now</a></p>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="text-center">
-            <img src="images/banner-02.jpg" alt="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="m-b-20"><strong>Welcome To <br> Ticky Box</strong></h1>
-                        <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
-                        <p><a class="btn hvr-hover" href="#">Buy Ticket Now</a></p>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="text-center">
-            <img src="images/banner-03.jpg" alt="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="m-b-20"><strong>Welcome To <br> Ticky Box</strong></h1>
-                        <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
-                        <p><a class="btn hvr-hover" href="#">Buy Ticket Now</a></p>
-                    </div>
-                </div>
-            </div>
-        </li>
-    </ul>
-    <div class="slides-navigation">
-        <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-        <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-    </div>
-</div>
-<!-- End Slider -->
-<!-- Start Categories  -->
-<div class="categories-shop">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="shop-cat-box">
-                    <img class="img-fluid" src="images/Music.jpg" alt="" />
-                    <a class="btn hvr-hover" href="#">Music</a>
-                </div>
-                <div class="shop-cat-box">
-                    <img class="img-fluid" src="images/Sport.jpg" alt="" />
-                    <a class="btn hvr-hover" href="#">Sport</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="shop-cat-box">
-                    <img class="img-fluid" src="images/Comedy.jpg" alt="" />
-                    <a class="btn hvr-hover" href="#">Comedy</a>
-                </div>
-                <div class="shop-cat-box">
-                    <img class="img-fluid" src="images/Art.jpg" alt="" />
-                    <a class="btn hvr-hover" href="#">Art</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="shop-cat-box">
-                    <img class="img-fluid" src="images/Nightlife.jpg" alt="" />
-                    <a class="btn hvr-hover" href="#">Nightlife</a>
-                </div>
-                <div class="shop-cat-box">
-                    <img class="img-fluid" src="images/Workshop.jpg" alt="" />
-                    <a class="btn hvr-hover" href="#">Workshop</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Categories -->
-<!-- Start Products  -->
-<div class="products-box">
+<!-- Featured Section Begin -->
+<section class="featured spad">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="title-all text-center">
-                    <h1>Featured Products</h1>
-                    <p>Get all tickets for events you want to join</p>
+                <div class="section-title">
+                    <h2>Hot Events</h2>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="special-menu text-center">
-                    <div class="button-group filter-button-group">
-                        <button data-filter=".top-featured">Top featured</button>
-                        <button data-filter=".best-seller">Best seller</button>
+        <div class="row featured__filter">
+            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                <div class="featured__item">
+                    <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
+                        <ul class="featured__item__pic__hover">
+                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row special-list">
-            <div class="col-lg-3 col-md-6 special-grid best-seller">
-                <div class="products-single fix">
-                    <div class="box-img-hover">
-                        <div class="type-lb">
-                            <p class="sale">Sale</p>
-                        </div>
-                        <img src="images/Music.jpg" class="img-fluid" alt="Image">
-                        <div class="mask-icon">
-                            <ul>
-                                <li><a href="#" data-toggle="tooltip" data-placement="text-center" title="View"><i class="fas fa-eye"></i></a></li>
-                            </ul>
-                            <a class="cart" href="#">Add to Cart</a>
-                        </div>
-                    </div>
-                    <div class="why-text">
-                        <h4>Lorem ipsum dolor sit amet</h4>
-                        <h5> $7.79</h5>
+                    <div class="featured__item__text">
+                        <h6><a href="#">Crab Pool Security</a></h6>
+                        <h5>$30.00</h5>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</section>
+<!-- Featured Section End -->
+<!-- Banner Begin -->
+<div class="banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="banner__pic">
+                    <img src="img/banner/banner-1.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="banner__pic">
+                    <img src="img/banner/banner-2.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<!-- End Products  -->
-<!-- Start Blog  -->
-<div class="latest-blog">
+<!-- Banner End -->
+<!-- Blog Section Begin -->
+<section class="from-blog spad">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="title-all text-center">
-                    <h1>latest blog</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>
+                <div class="section-title from-blog__title">
+                    <h2>From The Blog</h2>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 col-lg-4 col-xl-4">
-                <div class="blog-box">
-                    <div class="blog-img">
-                        <img class="img-fluid" src="images/blog-img.jpg" alt="" />
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="blog__item">
+                    <div class="blog__item__pic">
+                        <img src="img/blog/blog-1.jpg" alt="">
                     </div>
-                    <div class="blog-content">
-                        <div class="title-blog">
-                            <h3>Fusce in augue non nisi fringilla</h3>
-                            <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 col-xl-4">
-                <div class="blog-box">
-                    <div class="blog-img">
-                        <img class="img-fluid" src="images/blog-img-01.jpg" alt="" />
-                    </div>
-                    <div class="blog-content">
-                        <div class="title-blog">
-                            <h3>Fusce in augue non nisi fringilla</h3>
-                            <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
-                        </div>
+                    <div class="blog__item__text">
+                        <ul>
+                            <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
+                            <li><i class="fa fa-comment-o"></i> 5</li>
+                        </ul>
+                        <h5><a href="#">Ticky Box has become the exclusive ticket distributor for the hottest event of the year.</a></h5>
+                        <p>Exciting news! Ticky Box has just announced that they are the exclusive ticket distributor for the hottest event of the year. This is fantastic news for event-goers as Ticky Box is known for being a reliable and trustworthy vendor. With this exclusive partnership, customers can only purchase tickets through Ticky Box, ensuring they will have access to a large number of tickets. This announcement is a testament to Ticky Box's commitment to providing exceptional service to their customers. If you're planning on attending this year's hottest event, be sure to purchase your tickets from Ticky Box before they sell out!</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4 col-xl-4">
-                <div class="blog-box">
-                    <div class="blog-img">
-                        <img class="img-fluid" src="images/blog-img-02.jpg" alt="" />
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="blog__item">
+                    <div class="blog__item__pic">
+                        <img src="img/blog/blog-2.jpg" alt="">
                     </div>
-                    <div class="blog-content">
-                        <div class="title-blog">
-                            <h3>Fusce in augue non nisi fringilla</h3>
-                            <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
-                        </div>
+                    <div class="blog__item__text">
+                        <ul>
+                            <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
+                            <li><i class="fa fa-comment-o"></i> 5</li>
+                        </ul>
+                        <h5><a href="#">Ticky Box is the best ticket distributor for all event</a></h5>
+                        <p>Are you looking for a reliable ticket distributor for your next big event? Look no further than Ticky Box! With a reputation for excellent service and customer satisfaction, Ticky Box is the go-to destination for event tickets. Whether it's a concert, festival, or sporting event, Ticky Box has you covered. With their easy-to-use website and large inventory of tickets, customers can purchase with confidence knowing they are getting the best deals available. So why wait? Trust Ticky Box for all your ticketing needs and make your next event experience unforgettable!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="blog__item">
+                    <div class="blog__item__pic">
+                        <img src="img/blog/blog-3.jpg" alt="">
+                    </div>
+                    <div class="blog__item__text">
+                        <ul>
+                            <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
+                            <li><i class="fa fa-comment-o"></i> 5</li>
+                        </ul>
+                        <h5><a href="#">Ticky Box supports for their all retailers</a></h5>
+                        <p>At Ticky Box, we understand the importance of building strong relationships with our retailers. That's why we provide comprehensive support to all of our retailers, big or small. From marketing materials to training and technical support, we are committed to helping our retailers succeed. We believe that our retailers' success is our success, and we go the extra mile to ensure that they have everything they need to thrive in their businesses. We are always looking for ways to improve our retailer support, and we are proud to say that our retailers are some of the happiest and most successful in the industry. Join the Ticky Box family today and experience the difference our retailer support can make!</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- End Blog  -->
+</section>
+<!-- Blog Section End -->
