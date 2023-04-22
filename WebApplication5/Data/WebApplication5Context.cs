@@ -17,27 +17,5 @@ namespace WebApplication5.Data
         public DbSet<TicketOrder> TicketOrders { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Retailer> Retailers { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Retailer>()
-                .HasOne(b => b.Admin)
-                .WithMany()
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Retailer>()
-                .HasOne(b => b.Account)
-                .WithOne()
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Account>()
-                .HasOne(e => e.Retailer)
-                .WithOne(e => e.Account)
-                .HasForeignKey<Retailer>(e => e.AccountId);
-
-            modelBuilder.Entity<Admin>()
-                .HasMany(e => e.Retailers)
-                .WithMany();
-        }
     }
 }

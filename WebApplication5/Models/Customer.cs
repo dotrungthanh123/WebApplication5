@@ -11,6 +11,8 @@ namespace WebApplication5.Models
         public int AccountId { get; set; }
         public Account? Account { get; set; }
 
+        public List<TicketOrder> ticketOrders { get; } = new List<TicketOrder>();
+
         public string Address { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }   

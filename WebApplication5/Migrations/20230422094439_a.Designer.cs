@@ -12,8 +12,8 @@ using WebApplication5.Data;
 namespace WebApplication5.Migrations
 {
     [DbContext(typeof(WebApplication5Context))]
-    [Migration("20230422071902_fix")]
-    partial class fix
+    [Migration("20230422094439_a")]
+    partial class a
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -278,7 +278,7 @@ namespace WebApplication5.Migrations
             modelBuilder.Entity("WebApplication5.Models.Event", b =>
                 {
                     b.HasOne("WebApplication5.Models.Admin", "Admin")
-                        .WithMany()
+                        .WithMany("Events")
                         .HasForeignKey("AdminId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -343,7 +343,7 @@ namespace WebApplication5.Migrations
             modelBuilder.Entity("WebApplication5.Models.TicketOrder", b =>
                 {
                     b.HasOne("WebApplication5.Models.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("ticketOrders")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -362,12 +362,19 @@ namespace WebApplication5.Migrations
 
             modelBuilder.Entity("WebApplication5.Models.Admin", b =>
                 {
+                    b.Navigation("Events");
+
                     b.Navigation("Retailers");
                 });
 
             modelBuilder.Entity("WebApplication5.Models.Category", b =>
                 {
                     b.Navigation("Events");
+                });
+
+            modelBuilder.Entity("WebApplication5.Models.Customer", b =>
+                {
+                    b.Navigation("ticketOrders");
                 });
 #pragma warning restore 612, 618
         }

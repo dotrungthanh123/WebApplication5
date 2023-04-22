@@ -22,21 +22,6 @@ namespace WebApplication5.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AdminRetailer", b =>
-                {
-                    b.Property<int>("Admin1AdminId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RetailersRetailerId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Admin1AdminId", "RetailersRetailerId");
-
-                    b.HasIndex("RetailersRetailerId");
-
-                    b.ToTable("AdminRetailer");
-                });
-
             modelBuilder.Entity("WebApplication5.Models.Account", b =>
                 {
                     b.Property<int>("AccountId")
@@ -265,21 +250,6 @@ namespace WebApplication5.Migrations
                     b.ToTable("TicketOrders");
                 });
 
-            modelBuilder.Entity("AdminRetailer", b =>
-                {
-                    b.HasOne("WebApplication5.Models.Admin", null)
-                        .WithMany()
-                        .HasForeignKey("Admin1AdminId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebApplication5.Models.Retailer", null)
-                        .WithMany()
-                        .HasForeignKey("RetailersRetailerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("WebApplication5.Models.Admin", b =>
                 {
                     b.HasOne("WebApplication5.Models.Account", "Account")
@@ -305,7 +275,7 @@ namespace WebApplication5.Migrations
             modelBuilder.Entity("WebApplication5.Models.Event", b =>
                 {
                     b.HasOne("WebApplication5.Models.Admin", "Admin")
-                        .WithMany()
+                        .WithMany("Events")
                         .HasForeignKey("AdminId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -353,13 +323,13 @@ namespace WebApplication5.Migrations
                     b.HasOne("WebApplication5.Models.Account", "Account")
                         .WithOne("Retailer")
                         .HasForeignKey("WebApplication5.Models.Retailer", "AccountId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("WebApplication5.Models.Admin", "Admin")
-                        .WithMany()
+                        .WithMany("Retailers")
                         .HasForeignKey("AdminId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Account");
@@ -370,7 +340,7 @@ namespace WebApplication5.Migrations
             modelBuilder.Entity("WebApplication5.Models.TicketOrder", b =>
                 {
                     b.HasOne("WebApplication5.Models.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("ticketOrders")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -387,9 +357,21 @@ namespace WebApplication5.Migrations
                     b.Navigation("Retailer");
                 });
 
+            modelBuilder.Entity("WebApplication5.Models.Admin", b =>
+                {
+                    b.Navigation("Events");
+
+                    b.Navigation("Retailers");
+                });
+
             modelBuilder.Entity("WebApplication5.Models.Category", b =>
                 {
                     b.Navigation("Events");
+                });
+
+            modelBuilder.Entity("WebApplication5.Models.Customer", b =>
+                {
+                    b.Navigation("ticketOrders");
                 });
 #pragma warning restore 612, 618
         }
