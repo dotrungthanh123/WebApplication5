@@ -22,8 +22,8 @@ namespace WebApplication5.Controllers
         // GET: Cart
         public async Task<IActionResult> Index()
         {
-            var webApplication5Context = _context.OrderDetails.Include(o => o.Event).Include(o => o.TicketOrder);
-            return View(await webApplication5Context.ToListAsync());
+            //var webApplication5Context = _context.OrderDetails.Include(o => o.Event).Include(o => o.TicketOrder);
+            return View();
         }
 
         // GET: Cart/Details/5
