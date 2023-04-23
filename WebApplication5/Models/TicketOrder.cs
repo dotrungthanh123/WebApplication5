@@ -13,6 +13,6 @@ namespace WebApplication5.Models
 
         public List<OrderDetail> OrderDetails { get; set; }
 
-        public DateTime BuyDate { get; set; }
+        public DateTime? BuyDate { get; set; }
     }
 }

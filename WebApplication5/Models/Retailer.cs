@@ -17,6 +17,5 @@ namespace WebApplication5.Models
         public string Phone { get; set; }
         public string Email { get; set; }
         public DateTime ApproveDate { get; set; }
-        public string Name { get; set; }
     }
 }

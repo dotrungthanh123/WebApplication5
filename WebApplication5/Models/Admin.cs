@@ -14,6 +14,5 @@ namespace WebApplication5.Models
         public List<Event> Events { get; } = new List<Event>();
 
         public float Salary { get; set; }
-        public string Name { get; set; }    
     }
 }

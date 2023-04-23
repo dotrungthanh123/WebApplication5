@@ -21,7 +21,7 @@ namespace WebApplication5.Models
         public string Name { get; set; }
         public int Seat { get; set; }
         public float Price { get; set; }
-        public DateTime ApproveDate { get; set; }
+        public DateTime? ApproveDate { get; set; }
         public DateTime StartDate { get; set; }
         public string Address { get; set; }
     }
