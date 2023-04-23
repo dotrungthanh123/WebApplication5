@@ -6,13 +6,12 @@ namespace WebApplication5.Models
     [PrimaryKey(nameof(EventId), nameof(OrderId))]
     public class OrderDetail
     {
-        [ForeignKey("Event")]
-        public int EventId { get; set; }
+        [ForeignKey("EventId")]
         public Event? Event { get; set; }
 
-        [ForeignKey("Order")]
+        [ForeignKey("OrderId")]
         public int OrderId { get; set; }
-        public TicketOrder? TicketOrder { get; set; }
+        public Order? Order { get; set; }
 
         public int Quantity { get; set; }
     }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication5.Data;
 
@@ -11,9 +12,11 @@ using WebApplication5.Data;
 namespace WebApplication5.Migrations
 {
     [DbContext(typeof(WebApplication5Context))]
-    partial class WebApplication5ContextModelSnapshot : ModelSnapshot
+    [Migration("20230422172536_initEventTable")]
+    partial class initEventTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,8 +67,7 @@ namespace WebApplication5.Migrations
                     b.Property<int>("RetailerId")
                         .HasColumnType("int");
 
-                    b.Property<float?>("Salary")
-                        .IsRequired()
+                    b.Property<float>("Salary")
                         .HasColumnType("real");
 
                     b.HasKey("AdminId");
@@ -116,6 +118,7 @@ namespace WebApplication5.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
@@ -156,15 +159,13 @@ namespace WebApplication5.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float?>("Price")
-                        .IsRequired()
+                    b.Property<float>("Price")
                         .HasColumnType("real");
 
                     b.Property<int?>("RetailerId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Seat")
-                        .IsRequired()
+                    b.Property<int>("Seat")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
@@ -179,27 +180,6 @@ namespace WebApplication5.Migrations
                     b.HasIndex("RetailerId");
 
                     b.ToTable("Events");
-                });
-
-            modelBuilder.Entity("WebApplication5.Models.Order", b =>
-                {
-                    b.Property<int>("OrderId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
-
-                    b.Property<DateTime>("BuyDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrderId");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("WebApplication5.Models.OrderDetail", b =>
@@ -259,6 +239,27 @@ namespace WebApplication5.Migrations
                     b.ToTable("Retailers");
                 });
 
+            modelBuilder.Entity("WebApplication5.Models.TicketOrder", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
+
+                    b.Property<DateTime>("BuyDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("TicketOrders");
+                });
+
             modelBuilder.Entity("WebApplication5.Models.Admin", b =>
                 {
                     b.HasOne("WebApplication5.Models.Account", "Account")
@@ -306,17 +307,6 @@ namespace WebApplication5.Migrations
                     b.Navigation("Retailer");
                 });
 
-            modelBuilder.Entity("WebApplication5.Models.Order", b =>
-                {
-                    b.HasOne("WebApplication5.Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-                });
-
             modelBuilder.Entity("WebApplication5.Models.OrderDetail", b =>
                 {
                     b.HasOne("WebApplication5.Models.Event", "Event")
@@ -325,7 +315,7 @@ namespace WebApplication5.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApplication5.Models.Order", "Order")
+                    b.HasOne("WebApplication5.Models.TicketOrder", "TicketOrder")
                         .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -333,7 +323,7 @@ namespace WebApplication5.Migrations
 
                     b.Navigation("Event");
 
-                    b.Navigation("Order");
+                    b.Navigation("TicketOrder");
                 });
 
             modelBuilder.Entity("WebApplication5.Models.Retailer", b =>
@@ -353,6 +343,17 @@ namespace WebApplication5.Migrations
                     b.Navigation("Account");
 
                     b.Navigation("Admin");
+                });
+
+            modelBuilder.Entity("WebApplication5.Models.TicketOrder", b =>
+                {
+                    b.HasOne("WebApplication5.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("WebApplication5.Models.Account", b =>

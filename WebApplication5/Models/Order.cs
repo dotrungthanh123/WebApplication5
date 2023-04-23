@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplication5.Models
 {
-    public class TicketOrder
+    public class Order
     {
         [Key] public int OrderId { get; set; }
 

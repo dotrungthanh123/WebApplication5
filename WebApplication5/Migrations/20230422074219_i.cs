@@ -14,9 +14,9 @@ namespace WebApplication5.Migrations
                 name: "FK_Retailers_Accounts_AccountId",
                 table: "Retailers");
 
-            migrationBuilder.DropForeignKey(
-                name: "FK_Retailers_Admins_AdminId",
-                table: "Retailers");
+            //migrationBuilder.DropForeignKey(
+            //    name: "FK_Retailers_Admins_AdminId",
+            //    table: "Retailers");
 
             migrationBuilder.AddColumn<int>(
                 name: "AccountId1",
@@ -84,9 +84,9 @@ namespace WebApplication5.Migrations
                 name: "FK_Retailers_Accounts_AccountId1",
                 table: "Retailers");
 
-            migrationBuilder.DropForeignKey(
-                name: "FK_Retailers_Admins_AdminId",
-                table: "Retailers");
+            //migrationBuilder.DropForeignKey(
+            //    name: "FK_Retailers_Admins_AdminId",
+            //    table: "Retailers");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_Retailers_Admins_AdminId1",

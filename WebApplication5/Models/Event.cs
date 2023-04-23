@@ -1,28 +1,34 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplication5.Models
 {
     public class Event
-    {
-        public int EventId { get; set; }
+    {   
+        [Key] public int EventId { get; set; }
 
-        [ForeignKey("Category")]
-        public int CategoryId { get; set; }
+        [ForeignKey("CategoryId")]
+        public int? CategoryId { get; set; }
         public Category? Category { get; set; }
 
-        [ForeignKey("Retailer")]
-        public int RetailerId { get; set; }
+        [ForeignKey("RetailerId")]
         public Retailer? Retailer { get; set; }
 
-        [ForeignKey("Admin")]
-        public int AdminId { get; set; }
+        [ForeignKey("AdminId")]
         public Admin? Admin { get; set; }
 
-        public string Name { get; set; }
-        public int Seat { get; set; }
-        public float Price { get; set; }
+        [Required]
+        public string? Name { get; set; }
+        [Required]
+        public int? Seat { get; set; }
+        [Required]
+        public float? Price { get; set; }
+
+        [Required]
         public DateTime ApproveDate { get; set; }
+        [Required]
         public DateTime StartDate { get; set; }
-        public string Address { get; set; }
+        [Required]
+        public string? Address { get; set; }
     }
 }

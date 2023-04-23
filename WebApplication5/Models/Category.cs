@@ -1,9 +1,12 @@
-﻿namespace WebApplication5.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WebApplication5.Models
 {
     public class Category
     {
-        public int CategoryId { get; set; }
-        public List<Event> Events { get; } = new List<Event>();  
-        public string Name { get; set; }
+        [Key] public int CategoryId { get; set; }
+        [Required]
+        public string? CategoryName { get; set; }
+        public ICollection<Event>? Events { get; set;}
     }
 }

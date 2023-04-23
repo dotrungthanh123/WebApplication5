@@ -14,7 +14,7 @@ namespace WebApplication5.Data
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Admin> Admins { get; set; }
-        public DbSet<TicketOrder> TicketOrders { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Retailer> Retailers { get; set; }
 
@@ -36,7 +36,7 @@ namespace WebApplication5.Data
                 .HasForeignKey<Retailer>(e => e.AccountId);
 
             modelBuilder.Entity<Admin>()
-                .HasMany(e => e.Retailers)
+                .HasOne(e => e.Retailer)
                 .WithMany();
         }
     }
