@@ -21,7 +21,12 @@ namespace WebApplication5.Models
 
         public Account? GetAccountWithGoogleId(string googleId)
         {
-            return _webApplication5DbContext.Accounts.SingleOrDefault(c => c.GoogleId == googleId);
+            var temp = _webApplication5DbContext.Accounts.SingleOrDefault(c => c.GoogleId == googleId);
+            if (temp == null)
+            {
+                Console.Write(1);
+            }
+            return temp;
         }
 
         public Account? GetAccountWithUsernameAndPassword(string username, string password)

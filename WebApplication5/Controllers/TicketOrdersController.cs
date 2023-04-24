@@ -10,87 +10,90 @@ using WebApplication5.Models;
 
 namespace WebApplication5.Controllers
 {
-    public class CategoriesController : Controller
+    public class TicketOrdersController : Controller
     {
         private readonly WebApplication5Context _context;
 
-        public CategoriesController(WebApplication5Context context)
+        public TicketOrdersController(WebApplication5Context context)
         {
             _context = context;
         }
 
-        // GET: Categories
+        // GET: TicketOrders
         public async Task<IActionResult> Index()
         {
-              return _context.Categories != null ? 
-                          View(await _context.Categories.ToListAsync()) :
-                          Problem("Entity set 'WebApplication5Context.Categories' is null.");
+            var webApplication5Context = _context.TicketOrders.Include(t => t.Customer);
+            return View(await webApplication5Context.ToListAsync());
         }
 
-        // GET: Categories/Details/5
+        // GET: TicketOrders/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Categories == null)
+            if (id == null || _context.TicketOrders == null)
             {
                 return NotFound();
             }
 
-            var category = await _context.Categories
-                .SingleAsync(m => m.CategoryId == id);
-            if (category == null)
+            var ticketOrder = await _context.TicketOrders
+                .Include(t => t.Customer)
+                .FirstOrDefaultAsync(m => m.OrderId == id);
+            if (ticketOrder == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(ticketOrder);
         }
 
-        // GET: Categories/Create
+        // GET: TicketOrders/Create
         public IActionResult Create()
         {
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId");
             return View();
         }
 
-        // POST: Categories/Create
+        // POST: TicketOrders/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryId,Name")] Category category)
+        public async Task<IActionResult> Create([Bind("OrderId,CustomerId,BuyDate")] TicketOrder ticketOrder)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(category);
+                _context.Add(ticketOrder);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId", ticketOrder.CustomerId);
+            return View(ticketOrder);
         }
 
-        // GET: Categories/Edit/5
+        // GET: TicketOrders/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Categories == null)
+            if (id == null || _context.TicketOrders == null)
             {
                 return NotFound();
             }
 
-            var category = await _context.Categories.FindAsync(id);
-            if (category == null)
+            var ticketOrder = await _context.TicketOrders.FindAsync(id);
+            if (ticketOrder == null)
             {
                 return NotFound();
             }
-            return View(category);
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId", ticketOrder.CustomerId);
+            return View(ticketOrder);
         }
 
-        // POST: Categories/Edit/5
+        // POST: TicketOrders/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,Name")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("OrderId,CustomerId,BuyDate")] TicketOrder ticketOrder)
         {
-            if (id != category.CategoryId)
+            if (id != ticketOrder.OrderId)
             {
                 return NotFound();
             }
@@ -99,12 +102,12 @@ namespace WebApplication5.Controllers
             {
                 try
                 {
-                    _context.Update(category);
+                    _context.Update(ticketOrder);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryExists(category.CategoryId))
+                    if (!TicketOrderExists(ticketOrder.OrderId))
                     {
                         return NotFound();
                     }
@@ -115,49 +118,51 @@ namespace WebApplication5.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId", ticketOrder.CustomerId);
+            return View(ticketOrder);
         }
 
-        // GET: Categories/Delete/5
+        // GET: TicketOrders/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Categories == null)
+            if (id == null || _context.TicketOrders == null)
             {
                 return NotFound();
             }
 
-            var category = await _context.Categories
-                .SingleAsync(m => m.CategoryId == id);
-            if (category == null)
+            var ticketOrder = await _context.TicketOrders
+                .Include(t => t.Customer)
+                .FirstOrDefaultAsync(m => m.OrderId == id);
+            if (ticketOrder == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(ticketOrder);
         }
 
-        // POST: Categories/Delete/5
+        // POST: TicketOrders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Categories == null)
+            if (_context.TicketOrders == null)
             {
-                return Problem("Entity set 'WebApplication5Context.Categories'  is null.");
+                return Problem("Entity set 'WebApplication5Context.TicketOrders'  is null.");
             }
-            var category = await _context.Categories.FindAsync(id);
-            if (category != null)
+            var ticketOrder = await _context.TicketOrders.FindAsync(id);
+            if (ticketOrder != null)
             {
-                _context.Categories.Remove(category);
+                _context.TicketOrders.Remove(ticketOrder);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategoryExists(int id)
+        private bool TicketOrderExists(int id)
         {
-          return (_context.Categories?.Any(e => e.CategoryId == id)).GetValueOrDefault();
+          return (_context.TicketOrders?.Any(e => e.OrderId == id)).GetValueOrDefault();
         }
     }
 }

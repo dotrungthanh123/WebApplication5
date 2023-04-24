@@ -25,6 +25,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Events" asp-action="Index">Event</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="Index">Cart</a>
+                        </li>
                     </ul>
                     <ul>
                         @if (User.Identity != null && User.Identity.IsAuthenticated)

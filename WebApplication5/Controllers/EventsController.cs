@@ -27,8 +27,6 @@ namespace WebApplication5.Controllers
             return View(await webApplication5Context.ToListAsync());
         }
 
-        public IActionResult AccessDenied() => RedirectToAction(nameof(Index));
-
         // GET: Events/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -41,7 +39,7 @@ namespace WebApplication5.Controllers
                 .Include(a => a.Admin)
                 .Include(a => a.Category)
                 .Include(a => a.Retailer)
-                .FirstOrDefaultAsync(m => m.EventId == id);
+                .SingleAsync(m => m.EventId == id);
             if (aevent == null)
             {
                 return NotFound();
@@ -145,7 +143,7 @@ namespace WebApplication5.Controllers
             }
 
             var aevent = await _context.Events
-                .FirstOrDefaultAsync(m => m.EventId == id);
+                .SingleAsync(m => m.EventId == id);
             if (aevent == null)
             {
                 return NotFound();

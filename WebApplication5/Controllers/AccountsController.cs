@@ -13,6 +13,7 @@ namespace WebApplication5.Server.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountRepository accountRepository;
+        public static Account? Account { get; private set; }
         private readonly WebApplication5Context _webApplication5Context;
 
         public AccountController(IAccountRepository accountRepository, WebApplication5Context webApplication5Context)
@@ -20,6 +21,8 @@ namespace WebApplication5.Server.Controllers
             this.accountRepository = accountRepository;
             _webApplication5Context = webApplication5Context;
         }
+
+        public IActionResult AccessDenied() => View();
 
         //public IEnumerable<UserClaim> GetUserClaims()
         //{
@@ -62,6 +65,8 @@ namespace WebApplication5.Server.Controllers
                 principal,
                 new AuthenticationProperties { IsPersistent = model.RememberLogin });
 
+            Account = account;
+
             return LocalRedirect(model.ReturnUrl);
         }
 
@@ -85,9 +90,9 @@ namespace WebApplication5.Server.Controllers
             if (result.Principal == null)
                 throw new Exception("Could not create a principal");
             var externalClaims = result.Principal.Claims.ToList();
-            var googleId = externalClaims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
-            var givenName = externalClaims.FirstOrDefault(c => c.Type == ClaimTypes.GivenName);
-            var email = externalClaims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
+            var googleId = externalClaims.Single(c => c.Type == ClaimTypes.NameIdentifier);
+            var givenName = externalClaims.Single(c => c.Type == ClaimTypes.GivenName);
+            var email = externalClaims.Single(c => c.Type == ClaimTypes.Email);
             if (googleId == null)
                 throw new Exception("Could not extract the GoogleId");
             var idvalue = googleId.Value;
@@ -99,6 +104,8 @@ namespace WebApplication5.Server.Controllers
                     Username = email.Value,
                     GoogleId = idvalue,
                     Name = givenName.Value,
+                    Role = 2,
+                    Password = "12345678",
                 };
                 accountRepository.addAccount(account);
             }
@@ -112,9 +119,11 @@ namespace WebApplication5.Server.Controllers
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var principal = new ClaimsPrincipal(identity);
 
+            Account = account;
+
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
-            return LocalRedirect(result.Properties?.Items["ReturnUrl"] ?? "/ ");
+            return LocalRedirect(result.Properties?.Items["ReturnUrl"] ?? "/");
         }
 
         public async Task<IActionResult> Register()
@@ -139,6 +148,7 @@ namespace WebApplication5.Server.Controllers
         {
             await HttpContext.SignOutAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme);
+            Account = null;
             return Redirect("/");
         }
     }
