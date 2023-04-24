@@ -5,10 +5,10 @@
 }
 
 <div class="logo">
-    <a href="."><img src="img/logo.png" alt=""></a>
+    <a href="."><img src="~/img/logo.png" alt=""></a>
 </div>
 <div class="text-center mt-4 name">
-    Ticky Box
+    Login
 </div>
 <form class="p-3 mt-3">
     <div class="form-field d-flex align-items-center">
@@ -17,8 +17,10 @@
     <div class="form-field d-flex align-items-center">
         <input type="password" name="password" id="pwd" placeholder="Password">
     </div>
+    <button class="btn mt-3">Login by Google</button>
+    <div class="text-center">Or</div>
     <button class="btn mt-3">Login</button>
 </form>
 <div class="text-center fs-6">
-    <a href="#">Forget password?</a> or <a href="#">Sign up</a>
+    <a asp-area="" asp-controller="Register" asp-action="Customerregister">Register for customer</a> or <a asp-area="" asp-controller="Register" asp-action="Retailerregister">retailer</a>
 </div>

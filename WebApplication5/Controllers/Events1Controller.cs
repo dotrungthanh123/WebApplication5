@@ -26,8 +26,14 @@ namespace WebApplication5.Controllers
             return View();
         }
 
-        // GET: Events1/Details/5
-        public async Task<IActionResult> Details(int? id)
+		public async Task<IActionResult> Manage()
+		{
+			//var webApplication5Context = _context.Events.Include(a => a.Admin).Include(a => a.Category).Include(a => a.Retailer);
+			return View();
+		}
+
+		// GET: Events1/Details/5
+		public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Events == null)
             {

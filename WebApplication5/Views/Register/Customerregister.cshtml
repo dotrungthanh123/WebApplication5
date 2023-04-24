@@ -1,0 +1,41 @@
+﻿@model IEnumerable<WebApplication5.Models.Account>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Login_Layout.cshtml";
+}
+
+<div class="logo">
+    <a href="."><img src="~/img/logo.png" alt=""></a>
+</div>
+<div class="text-center mt-4 name">
+    Register for customer
+</div>
+<form class="p-3 mt-3">
+    <div class="form-field d-flex align-items-center">
+        <input type="text" name="userName" id="userName" placeholder="Username">
+    </div>
+    <div class="form-field d-flex align-items-center">
+        <input type="password" name="password" id="pwd" placeholder="Password">
+    </div>
+    <div class="form-field d-flex align-items-center">
+        <input type="password" name="confirmedpassword" id="cfpwd" placeholder="Confirmed Password">
+    </div>
+    <div class="form-field d-flex align-items-center">
+        <input type="text" name="Name" id="Name" placeholder="Name">
+    </div>
+    <div class="form-field d-flex align-items-center">
+        <input type="text" name="address" id="Address" placeholder="Adress">
+    </div>
+    <div class="form-field d-flex align-items-center">
+        <input type="email" name="Email" id="mail" placeholder="Email address">
+    </div>
+    <div class="form-field d-flex align-items-center">
+        <input type="tel" name="Phone" id="phone" placeholder="Phone number">
+    </div>
+
+    <button class="btn mt-3">Register</button>
+</form>
+<div class="text-center fs-6">
+    I have an account <a asp-area="" asp-controller="Login" asp-action="Index" >  Login</a>
+</div>
